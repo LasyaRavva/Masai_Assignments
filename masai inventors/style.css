@@ -1,0 +1,87 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box; 
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    background-color: #f4f4f4;
+    padding: 40px 20px;
+    display: flex;
+    justify-content: center;
+}
+
+.investors-container {
+    display: flex;
+    flex-wrap: wrap; 
+    justify-content: center; 
+    max-width: 1200px; 
+    gap: 30px; 
+}
+
+.investor-card {
+
+    flex: 0 1 calc(25% - 30px); 
+    max-width: 250px; 
+    text-align: center;
+    background-color: #fff;
+    border-radius: 8px;
+    padding-bottom: 20px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+}
+
+.image-wrapper {
+    overflow: hidden;
+    margin-bottom: 15px;
+}
+
+.investor-card img {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+.investor-card h3 {
+    font-size: 1.1em;
+    font-weight: 600;
+    color: #333;
+    margin-bottom: 5px;
+    padding: 0 10px;
+}
+
+.investor-card .title {
+    font-size: 0.9em;
+    color: #777;
+    margin-bottom: 15px;
+    padding: 0 10px;
+}
+
+.logo-wrapper {
+    height: 35px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.logo-wrapper img {
+    height: 100%; 
+    width: auto;
+}
+
+@media (max-width: 768px) {
+    .investor-card {
+        flex: 0 1 calc(50% - 30px); 
+        max-width: none;
+    }
+}
+@media (max-width: 480px) {
+    .investor-card {
+        flex: 0 1 100%; 
+        max-width: none;
+    }
+
+    .investors-container {
+        padding: 0;
+    }
+}
