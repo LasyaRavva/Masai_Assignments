@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Masai Investors</title>
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            padding: 40px 20px;
+            display: flex;
+            justify-content: center;
+        }
+
+        .investors-container {
+            display: flex;
+            flex-wrap: wrap; 
+            justify-content: center;
+            max-width: 1400px; 
+            gap: 30px;
+        }
+
+        .investor-card {
+            flex: 0 1 calc(25% - 22.5px); 
+            text-align: center;
+            background-color: #fff;
+            border-radius: 8px;
+            padding-bottom: 20px;
+            border: 1px solid #ddd; 
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+            overflow: hidden;
+            min-width: 200px;
+        }
+
+        .investor-card img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .investor-card h3 {
+            font-size: 1.1em;
+            font-weight: bold;
+            color: #333;
+            margin-bottom: 5px;
+            padding: 0 10px;
+        }
+
+        .investor-card .title {
+            font-size: 0.9em;
+            color: #777;
+            margin-bottom: 15px;
+            padding: 0 10px;
+        }
+
+        .logo-wrapper {
+            height: 35px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 0 10px;
+        }
+
+        .logo-wrapper img {
+            height: 100%; 
+            width: auto;
+            max-width: 100%;
+        }
+
+        @media (max-width: 1024px) {
+            .investor-card {
+                flex: 0 1 calc(33.33% - 20px);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .investor-card {
+                flex: 0 1 calc(50% - 15px);
+            }
+        }
+
+        @media (max-width: 480px) {
+            .investor-card {
+                flex: 0 1 100%; 
+            }
+
+            .investors-container {
+                gap: 20px;
+                padding: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="investors-container">
+
+        <div class="investor-card">
+            <div class="image-wrapper">
+                <img src="https://cdn.masaischool.com/masai-website/Vijay_Shekhar_Sharma_Paytm_96f52579b8.jpg" alt="Vijay Shekhar Sharma">
+            </div>
+            <h3>Vijay Shekhar Sharma</h3>
+            <p class="title">Founder & CEO</p>
+            <div class="logo-wrapper">
+                <img src="https://cdn.masaischool.com/masai-website/paytm_rect_06df45a24f.svg" alt="Paytm Logo">
+            </div>
+        </div>
+
+        <div class="investor-card">
+            <div class="image-wrapper">
+                <img src="https://cdn.masaischool.com/masai-website/Rectangle_427_637d69bb57.png" alt="Kunal Shah">
+            </div>
+            <h3>Kunal Shah</h3>
+            <p class="title">Founder</p>
+            <div class="logo-wrapper">
+                <img src="https://cdn.masaischool.com/masai-website/cred_0a47d7b4f8.png" alt="CRED Logo">
+            </div>
+        </div>
+
+        <div class="investor-card">
+            <div class="image-wrapper">
+                <img src="https://cdn.masaischool.com/masai-website/amrish_rau_pine_labs_144e5e587c.jpg" alt="Amrish Rau">
+            </div>
+            <h3>Amrish Rau</h3>
+            <p class="title">CEO</p>
+            <div class="logo-wrapper">
+                <img src="https://cdn.masaischool.com/masai-website/pine_labs_0aa2407434.png" alt="Pine Labs Logo">
+            </div>
+        </div>
+
+        <div class="investor-card">
+            <div class="image-wrapper">
+                <img src="https://cdn.masaischool.com/masai-website/Sampad_swain_Instamojo_f12bf6341e.jpg" alt="Sampad Swain">
+            </div>
+            <h3>Sampad Swain</h3>
+            <p class="title">Co-Founder & CEO</p>
+            <div class="logo-wrapper">
+                <img src="https://cdn.masaischool.com/masai-website/instamojo_8763e704f7.png" alt="Instamojo Logo">
+            </div>
+        </div>
+
+        <div class="investor-card">
+            <div class="image-wrapper">
+                <img src="https://cdn.masaischool.com/masai-website/Ankush_Sachdeva_Sharechat_4e44dbbe6b.jpg" alt="Ankush Sachdeva">
+            </div>
+            <h3>Ankush Sachdeva</h3>
+            <p class="title">Co-Founder & CEO</p>
+            <div class="logo-wrapper">
+                <img src="https://cdn.masaischool.com/masai-website/sharechat_rect_73d95cd4e1.svg" alt="ShareChat Logo">
+            </div>
+        </div>
+
+        <div class="investor-card">
+            <div class="image-wrapper">
+                <img src="https://cdn.masaischool.com/masai-website/bhanu_pratap_singh_sharechat_11fdd7b47a.jpg" alt="Bhanu Pratap Singh">
+            </div>
+            <h3>Bhanu Pratap Singh</h3>
+            <p class="title">Co-Founder & CTO</p>
+            <div class="logo-wrapper">
+                <img src="https://cdn.masaischool.com/masai-website/sharechat_rect_73d95cd4e1.svg" alt="ShareChat Logo">
+            </div>
+        </div>
+
+        <div class="investor-card">
+            <div class="image-wrapper">
+                <img src="https://cdn.masaischool.com/masai-website/farid_ahsan_sharechat_1251f28141.png" alt="Farid Ahsan">
+            </div>
+            <h3>Farid Ahsan</h3>
+            <p class="title">Co-Founder & COO</p>
+            <div class="logo-wrapper">
+                <img src="https://cdn.masaischool.com/masai-website/sharechat_rect_73d95cd4e1.svg" alt="ShareChat Logo">
+            </div>
+        </div>
+
+        <div class="investor-card">
+            <div class="image-wrapper">
+                <img src="https://cdn.masaischool.com/masai-website/Amit_Kumar_Agarwal_Nobroker_a8a279ad91.jpg" alt="Amit Kumar Agarwal">
+            </div>
+            <h3>Amit Kumar Agarwal</h3>
+            <p class="title">Founder & CEO</p>
+            <div class="logo-wrapper">
+                <img src="https://cdn.masaischool.com/masai-website/nobroker_rect_28c9778c30.svg" alt="NoBroker Logo">
+            </div>
+        </div>
+
+    </div>
+</body>
+</html>
