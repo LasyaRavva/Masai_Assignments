@@ -142,7 +142,7 @@ const player = {
         return `Hi, I'm ${this.name}`;
     }
 };
-console.log(player.greet()); // "Hi, I'm Sam"
+console.log(player.greet()); // "Hi, I'm lasya"
 
 // 9. Template Literals (More Practice)
 // 9a today's date
