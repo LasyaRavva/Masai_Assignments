@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>DOM 1 - q13 Interactive</title>
+  <style>
+    body { font-family: Arial, sans-serif; padding: 20px; }
+    .controls { margin-bottom: 12px; }
+    label { display: block; margin: 6px 0 2px; }
+    input[type="text"] { padding: 6px; width: 220px; }
+    button { margin-top: 8px; padding: 6px 10px; }
+    #target { margin-top: 16px; padding: 12px; border: 1px solid #ccc; }
+  </style>
+</head>
+<body>
+  <h2>Interactive DOM Manipulation (q13)</h2>
+
+  <div class="controls">
+    <label for="color-input">Enter a color name (e.g. blue, #f00, rgb(0,128,0))</label>
+    <input id="color-input" type="text" placeholder="Enter color name">
+    <button id="change-bg">Change Background</button>
+  </div>
+
+  <div class="controls">
+    <label for="text-input">Enter text to update the box</label>
+    <input id="text-input" type="text" placeholder="Enter text here">
+    <button id="update-text">Update Text</button>
+  </div>
+
+  <div id="target">This is the target div. Its background and text will change.</div>
+
+  <script src="q13.js"></script>
+</body>
+</html>
