@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Todo App</title>
+  <style>
+    * { box-sizing: border-box; }
+    body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; margin: 0; padding: 20px; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); min-height: 100vh; }
+    .container { max-width: 700px; margin: 0 auto; background: white; border-radius: 12px; padding: 24px; box-shadow: 0 10px 40px rgba(0,0,0,0.2); }
+    h1 { margin: 0 0 20px; color: #333; text-align: center; }
+    button.fetch { padding: 10px 20px; background: #667eea; color: white; border: none; border-radius: 6px; cursor: pointer; font-size: 16px; margin-bottom: 20px; }
+    button.fetch:hover { background: #5568d3; }
+    #todos { list-style: none; padding: 0; margin: 0; }
+    .todo-item { display: flex; align-items: center; gap: 12px; padding: 14px; margin-bottom: 10px; background: #f8f9fa; border-radius: 8px; border-left: 4px solid #667eea; transition: all 0.2s; }
+    .todo-item.completed { opacity: 0.7; border-left-color: #10b981; }
+    .todo-item.completed .title { text-decoration: line-through; color: #6b7280; }
+    .title { flex: 1; font-size: 15px; }
+    .status { font-size: 13px; padding: 4px 10px; border-radius: 12px; font-weight: 500; }
+    .status.complete { background: #d1fae5; color: #065f46; }
+    .status.incomplete { background: #fee2e2; color: #991b1b; }
+    .btn { padding: 6px 12px; border: none; border-radius: 5px; cursor: pointer; font-size: 13px; transition: all 0.2s; }
+    .toggle { background: #fbbf24; color: #78350f; }
+    .toggle:hover { background: #f59e0b; }
+    .delete { background: #ef4444; color: white; }
+    .delete:hover { background: #dc2626; }
+    .empty { text-align: center; color: #6b7280; padding: 40px; font-size: 18px; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>📝 Todo Application</h1>
+    <button class="fetch" id="fetch-btn">Fetch Todos from API</button>
+    <ul id="todos"></ul>
+    <div id="empty" class="empty" hidden>No Todos Available</div>
+  </div>
+
+  <script src="q8.js"></script>
+</body>
+</html>
