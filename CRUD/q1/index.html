@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Book Management - Firebase</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background: #f0f2f5; }
+    
+    .container { display: flex; min-height: 100vh; }
+    
+    /* Sidebar */
+    .sidebar { width: 320px; background: white; padding: 24px; box-shadow: 2px 0 8px rgba(0,0,0,0.1); overflow-y: auto; }
+    .sidebar h2 { margin-bottom: 20px; color: #333; }
+    .form-group { margin-bottom: 16px; }
+    .form-group label { display: block; margin-bottom: 6px; font-weight: 500; color: #555; }
+    .form-group input { width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 6px; font-size: 14px; }
+    .form-group input:focus { outline: none; border-color: #667eea; }
+    .btn-submit { width: 100%; padding: 12px; background: #667eea; color: white; border: none; border-radius: 6px; font-size: 16px; cursor: pointer; transition: 0.2s; }
+    .btn-submit:hover { background: #5568d3; }
+    
+    /* Main content */
+    .main-content { flex: 1; padding: 32px; }
+    .main-content h1 { margin-bottom: 24px; color: #333; }
+    
+    /* Books grid */
+    .books-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+    
+    /* Book card */
+    .book-card { background: white; border-radius: 12px; overflow: hidden; box-shadow: 0 4px 12px rgba(0,0,0,0.1); transition: transform 0.2s; }
+    .book-card:hover { transform: translateY(-4px); box-shadow: 0 6px 20px rgba(0,0,0,0.15); }
+    .book-card img { width: 100%; height: 280px; object-fit: cover; }
+    .book-info { padding: 16px; }
+    .book-title { font-size: 18px; font-weight: 600; margin-bottom: 8px; color: #333; }
+    .book-author { color: #666; margin-bottom: 8px; font-size: 14px; }
+    .book-price { font-size: 20px; font-weight: 700; color: #667eea; margin-bottom: 12px; }
+    .book-actions { display: flex; gap: 8px; flex-wrap: wrap; }
+    .btn { padding: 8px 12px; border: none; border-radius: 6px; cursor: pointer; font-size: 13px; transition: 0.2s; }
+    .btn-update { background: #fbbf24; color: #78350f; }
+    .btn-update:hover { background: #f59e0b; }
+    .btn-delete { background: #ef4444; color: white; }
+    .btn-delete:hover { background: #dc2626; }
+    .btn-view { background: #10b981; color: white; }
+    .btn-view:hover { background: #059669; }
+    
+    /* Modal */
+    .modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); justify-content: center; align-items: center; z-index: 1000; }
+    .modal.active { display: flex; }
+    .modal-content { background: white; padding: 28px; border-radius: 12px; max-width: 500px; width: 90%; }
+    .modal-content h3 { margin-bottom: 16px; }
+    .modal-close { float: right; font-size: 24px; cursor: pointer; color: #999; }
+    .modal-close:hover { color: #333; }
+    
+    /* Loading & Empty states */
+    .loading { text-align: center; padding: 40px; color: #666; }
+    .empty { text-align: center; padding: 60px; color: #999; font-size: 18px; }
+    
+    @media (max-width: 1200px) { .books-grid { grid-template-columns: repeat(2, 1fr); } }
+    @media (max-width: 768px) { 
+      .container { flex-direction: column; }
+      .sidebar { width: 100%; }
+      .books-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <!-- Sidebar Form -->
+    <aside class="sidebar">
+      <h2>📚 Add New Book</h2>
+      <form id="add-book-form">
+        <div class="form-group">
+          <label for="title">Title</label>
+          <input type="text" id="title" required>
+        </div>
+        <div class="form-group">
+          <label for="author">Author</label>
+          <input type="text" id="author" required>
+        </div>
+        <div class="form-group">
+          <label for="price">Price ($)</label>
+          <input type="number" id="price" step="0.01" required>
+        </div>
+        <div class="form-group">
+          <label for="coverImageURL">Cover Image URL</label>
+          <input type="url" id="coverImageURL" required>
+        </div>
+        <button type="submit" class="btn-submit">Add Book</button>
+      </form>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="main-content">
+      <h1>Book Collection</h1>
+      <div id="loading" class="loading">Loading books...</div>
+      <div id="books-grid" class="books-grid"></div>
+      <div id="empty" class="empty" style="display: none;">No books available. Add one from the sidebar!</div>
+    </main>
+  </div>
+
+  <!-- View Details Modal -->
+  <div id="view-modal" class="modal">
+    <div class="modal-content">
+      <span class="modal-close" onclick="closeModal()">&times;</span>
+      <h3>Book Details</h3>
+      <div id="modal-body"></div>
+    </div>
+  </div>
+
+  <!-- Firebase SDKs -->
+  <script type="module" src="q1.js"></script>
+</body>
+</html>
