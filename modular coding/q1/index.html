@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Home - Modular App</title>
+  <link rel="stylesheet" href="styles/main.css">
+</head>
+<body>
+  <div id="navbar-root"></div>
+  
+  <main class="main-content">
+    <div class="hero">
+      <h1>Welcome to Modular JavaScript App</h1>
+      <p>A project demonstrating modular code structure with authentication and API integration</p>
+      <div class="cta-buttons">
+        <a href="signup.html" class="btn btn-primary">Get Started</a>
+        <a href="login.html" class="btn btn-secondary">Login</a>
+      </div>
+    </div>
+    
+    <section class="features">
+      <h2>Features</h2>
+      <div class="features-grid">
+        <div class="feature-card">
+          <h3>🔐 Authentication</h3>
+          <p>Secure signup and login with localStorage</p>
+        </div>
+        <div class="feature-card">
+          <h3>📝 Todos Management</h3>
+          <p>Fetch and display todos from API</p>
+        </div>
+        <div class="feature-card">
+          <h3>🧩 Modular Structure</h3>
+          <p>Clean ES6 modules with import/export</p>
+        </div>
+      </div>
+    </section>
+  </main>
+  
+  <div id="footer-root"></div>
+  
+  <script type="module">
+    import { createNavbar } from './components/navbar.js';
+    import { createFooter } from './components/footer.js';
+    
+    document.getElementById('navbar-root').appendChild(createNavbar());
+    document.getElementById('footer-root').appendChild(createFooter());
+  </script>
+</body>
+</html>
