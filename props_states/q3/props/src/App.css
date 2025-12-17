@@ -1,0 +1,51 @@
+.app {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 12px;
+  padding: 40px 16px 56px;
+  background: #f7f8fb;
+  color: #1f2937;
+  text-align: center;
+  max-width: 960px;
+  margin: 0 auto;
+}
+
+.app h1 {
+  margin: 0;
+  font-size: 2.2rem;
+}
+
+.subtitle {
+  margin: 0 0 12px;
+  color: #6b7280;
+}
+
+.cards-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 16px;
+  width: min(720px, 100%);
+}
+
+.msg-card {
+  background: #fff;
+  border: 1px solid #e5e7eb;
+  border-radius: 12px;
+  padding: 16px;
+  text-align: left;
+  box-shadow: 0 8px 18px rgba(0, 0, 0, 0.05);
+}
+
+.msg-card h3 {
+  margin: 0 0 8px;
+  font-size: 1.1rem;
+  color: #111827;
+}
+
+.msg-card p {
+  margin: 0;
+  color: #4b5563;
+}
