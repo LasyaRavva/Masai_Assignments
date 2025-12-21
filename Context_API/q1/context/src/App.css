@@ -1,0 +1,37 @@
+#root {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 2rem;
+  text-align: center;
+}
+
+.app {
+  font-family: Arial, sans-serif;
+}
+
+.app h1 {
+  color: #d1dbe4;
+  margin-bottom: 10px;
+}
+
+.app p {
+  color: #f9f4f4;
+  font-size: 16px;
+}
+
+div[style*="border"] {
+  background-color: #f9f9f9;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+h3 {
+  color: #333;
+  margin-top: 0;
+}
+
+h4 {
+  color: #555;
+  margin: 10px 0;
+  font-weight: normal;
+}
