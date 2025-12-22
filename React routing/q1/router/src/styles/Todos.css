@@ -1,0 +1,91 @@
+/* Todos Page Styling */
+.todos-content {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.todos-content h1 {
+  color: #333;
+  margin-bottom: 2rem;
+  font-size: 2rem;
+  text-align: center;
+}
+
+.todos-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 1.5rem;
+  margin-top: 2rem;
+}
+
+.todo-card {
+  background-color: white;
+  border-radius: 8px;
+  padding: 1.5rem;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+  border-left: 4px solid #4CAF50;
+}
+
+.todo-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
+}
+
+.todo-header {
+  margin-bottom: 1rem;
+}
+
+.todo-header h3 {
+  color: #333;
+  margin: 0;
+  font-size: 1.1rem;
+  word-break: break-word;
+  line-height: 1.4;
+}
+
+.todo-status {
+  display: flex;
+  justify-content: center;
+  margin-top: 1rem;
+}
+
+.status-badge {
+  padding: 0.5rem 1rem;
+  border-radius: 20px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  text-transform: uppercase;
+}
+
+.status-badge.completed {
+  background-color: #4CAF50;
+  color: white;
+}
+
+.status-badge.not-completed {
+  background-color: #ff9800;
+  color: white;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .todos-grid {
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 1rem;
+  }
+
+  .todo-card {
+    padding: 1rem;
+  }
+
+  .todo-header h3 {
+    font-size: 1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .todos-grid {
+    grid-template-columns: 1fr;
+  }
+}
