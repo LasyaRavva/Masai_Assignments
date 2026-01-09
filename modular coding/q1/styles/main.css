@@ -68,6 +68,9 @@ body {
   margin: 2rem auto;
   padding: 0 2rem;
   min-height: calc(100vh - 250px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .hero {
@@ -162,24 +165,26 @@ body {
 }
 
 .form-container {
-  max-width: 500px;
-  margin: 3rem auto;
+  max-width: 280px;
+  width: 100%;
+  margin: 0;
   background: white;
-  padding: 2.5rem;
-  border-radius: 10px;
+  padding: 1.2rem;
+  border-radius: 8px;
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
 }
 
 .form-container h1 {
   text-align: center;
   color: #667eea;
-  margin-bottom: 2rem;
+  margin-bottom: 1.2rem;
+  font-size: 1.5rem;
 }
 
 .auth-form {
   display: flex;
   flex-direction: column;
-  gap: 1.5rem;
+  gap: 1rem;
 }
 
 .form-group {
@@ -194,10 +199,10 @@ body {
 }
 
 .form-group input {
-  padding: 0.75rem;
+  padding: 0.6rem;
   border: 2px solid #ddd;
   border-radius: 5px;
-  font-size: 1rem;
+  font-size: 0.9rem;
   transition: border-color 0.3s;
 }
 
