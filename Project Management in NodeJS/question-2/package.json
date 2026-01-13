@@ -1,0 +1,16 @@
+{
+  "name": "question-2",
+  "version": "1.0.0",
+  "description": "Exploring External NPM Module - Boxen",
+  "type": "module",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "keywords": ["boxen", "npm-modules"],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "boxen": "5.1.2"
+  }
+}
