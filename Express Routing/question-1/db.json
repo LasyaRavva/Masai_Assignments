@@ -1,0 +1,45 @@
+{
+  "users": [
+    {
+      "userId": 1,
+      "name": "Rahul",
+      "email": "rahul@example.com",
+      "phone": "9876543210"
+    },
+    {
+      "userId": 2,
+      "name": "Priya",
+      "email": "priya@example.com",
+      "phone": "9876543211"
+    },
+    {
+      "userId": 3,
+      "name": "Amit",
+      "email": "amit@example.com",
+      "phone": "9876543212"
+    }
+  ],
+  "todos": [
+    {
+      "todoId": 1,
+      "title": "Learn Express.js",
+      "description": "Study Express routing and middleware",
+      "completed": false,
+      "userId": 1
+    },
+    {
+      "todoId": 2,
+      "title": "Build CRUD app",
+      "description": "Create a CRUD application with JSON database",
+      "completed": false,
+      "userId": 1
+    },
+    {
+      "todoId": 3,
+      "title": "Complete assignment",
+      "description": "Finish the Express Routing assignment",
+      "completed": false,
+      "userId": 2
+    }
+  ]
+}
