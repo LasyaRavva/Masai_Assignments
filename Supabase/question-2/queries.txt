@@ -1,0 +1,181 @@
+SQL CRUD OPERATIONS - SUPABASE
+
+PROJECT NAME: LasyaRavva's Project
+TABLE NAME: students
+
+STEP 1: CREATE TABLE
+
+
+Query:
+------
+CREATE TABLE students (
+  id SERIAL PRIMARY KEY,
+  name TEXT NOT NULL,
+  email TEXT NOT NULL,
+  age INTEGER NOT NULL,
+  course TEXT NOT NULL,
+  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+Success. No rows returned
+Status: ✓ Table created successfully
+
+
+
+STEP 2: INSERT DATA (8 Records)
+
+
+Query:
+------
+INSERT INTO students (name, email, age, course, created_at) VALUES
+('Aarjav Patel', 'aarjav@example.com', 22, 'Web Development', NOW()),
+('Priya Sharma', 'priya@example.com', 19, 'Data Science', NOW()),
+('Rajesh Kumar', 'rajesh@example.com', 21, 'Web Development', NOW()),
+('Neha Singh', 'neha@example.com', 23, 'Mobile Development', NOW()),
+('Amit Verma', 'amit@example.com', 20, 'Data Science', NOW()),
+('Deepa Nair', 'deepa@example.com', 24, 'Web Development', NOW()),
+('Vikram Das', 'vikram@example.com', 18, 'Mobile Development', NOW()),
+('Anjali Gupta', 'anjali@example.com', 21, 'Data Science', NOW());
+
+Output:
+-------
+1 row updated
+
+
+
+STEP 3: READ DATA (SELECT QUERIES)
+
+
+Query 1: Fetch all students
+---------
+SELECT * FROM students;
+
+Output:
+-------
+8 rows (Limited to only 100 rows)
+
+Query 2: Fetch students older than 20
+---------
+SELECT * FROM students WHERE age > 20;
+
+Output:
+-------
+
+id | name           | email                  | age | course             | created_at
+1  | Aarjav Patel   | aarjav@example.com     | 22  | Web Development    | 2026-01-22 15:16:45.703574
+3  | Rajesh Kumar   | rajesh@example.com     | 21  | Web Development    | 2026-01-22 15:16:45.703574
+4  | Neha Singh     | neha@example.com       | 23  | Mobile Development | 2026-01-22 15:16:45.703574
+6  | Deepa Nair     | deepa@example.com      | 24  | Web Development    | 2026-01-22 15:16:45.703574
+8  | Anjali Gupta   | anjali@example.com     | 21  | Data Science       | 2026-01-22 15:16:45.703574
+
+5 rows (Limited to only 100 rows)
+
+
+Query 3: Fetch only name and email columns
+---------
+SELECT name, email FROM students;
+
+Output:
+-------
+
+name | email
+-----------------------------
+Aarjav Patel | aarjav@example.com
+Priya Sharma | priya@example.com
+Rajesh Kumar | rajesh@example.com
+Neha Singh   | neha@example.com
+Amit Verma   | amit@example.com
+Deepa Nair   | deepa@example.com
+Vikram Das   | vikram@example.com
+Anjali Gupta | anjali@example.com
+
+8 rows (Limited to only 100 rows)
+
+
+Query 4: Fetch students enrolled in Web Development
+---------
+SELECT * FROM students WHERE course = 'Web Development';
+
+Output:
+-------
+id | name           | email                  | age | course           | created_at
+1  | Aarjav Patel   | aarjav@example.com     | 22  | Web Development  | 2026-01-22 15:16:45.703574
+3  | Rajesh Kumar   | rajesh@example.com     | 21  | Web Development  | 2026-01-22 15:16:45.703574
+6  | Deepa Nair     | deepa@example.com      | 24  | Web Development  | 2026-01-22 15:16:45.703574
+
+3 rows (Limited to only 100 rows)
+
+STEP 4: UPDATE DATA
+
+
+Query 5: Update age of student with id=2 (Priya Sharma)
+---------
+UPDATE students SET age = 20 WHERE id = 2;
+
+Output:
+-------
+1 row updated
+
+
+Query 6: Change all Data Science students to Analytics
+---------
+UPDATE students SET course = 'Analytics' WHERE course = 'Data Science';
+
+Output:
+-------
+0 rows updated
+
+
+
+STEP 5: DELETE DATA
+
+
+Query 7: Delete student with id=7 (Vikram Das)
+---------
+DELETE FROM students WHERE id = 7;
+
+Output:
+-------
+1 row deleted
+
+7 rows (Limited to only 100 rows)
+
+Query 8: Delete students below age 19
+---------
+DELETE FROM students WHERE age < 19;
+
+Output:
+-------
+0 rows deleted
+
+
+FINAL TABLE STATE
+
+
+Query:
+------
+SELECT * FROM students;
+
+Final Output:
+-------------
+id | name          | email                  | age | course              | created_at
+1  | Aarjav Patel  | aarjav@example.com     | 22  | Web Development     | 2026-01-22 15:16:45.703574
+3  | Rajesh Kumar  | rajesh@example.com     | 21  | Web Development     | 2026-01-22 15:16:45.703574
+4  | Neha Singh    | neha@example.com       | 23  | Mobile Development  | 2026-01-22 15:16:45.703574
+5  | Amit Verma    | amit@example.com       | 20  | Data Science        | 2026-01-22 15:16:45.703574
+6  | Deepa Nair    | deepa@example.com      | 24  | Web Development     | 2026-01-22 15:16:45.703574
+8  | Anjali Gupta  | anjali@example.com     | 21  | Data Science        | 2026-01-22 15:16:45.703574
+2  | Priya Sharma  | priya@example.com      | 20  | Data Science        | 2026-01-22 15:16:45.703574
+
+7 rows (Limited to only 100 rows)
+
+
+
+SUBMISSION CHECKLIST
+
+✓ Table created in Supabase SQL Editor
+✓ 8 records inserted
+✓ All CRUD operations executed
+✓ Queries and outputs documented in queries.txt
+✓ File saved in: Supabase/question-2/
+✓ Ready for submission
