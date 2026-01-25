@@ -1,0 +1,314 @@
+SQL CRUD OPERATIONS ON RELATIONSHIPS
+=====================================
+
+PROJECT: Database Relationships Assignment
+ASSIGNMENT: Q1 - SQL CRUD with Relationships (Hands-On)
+
+============================================
+STEP 1: CREATE TABLES WITH RELATIONSHIPS
+============================================
+
+-- Table 1: users
+CREATE TABLE users (
+  id SERIAL PRIMARY KEY,
+  name TEXT NOT NULL,
+  email TEXT NOT NULL,
+  created_at TIMESTAMP DEFAULT NOW()
+);
+
+-- Table 2: orders
+CREATE TABLE orders (
+  id SERIAL PRIMARY KEY,
+  user_id INTEGER NOT NULL REFERENCES users(id),
+  amount INTEGER NOT NULL,
+  status TEXT NOT NULL,
+  created_at TIMESTAMP DEFAULT NOW()
+);
+
+Output:
+-------
+Success. No rows returned
+
+
+============================================
+STEP 2: INSERT DATA
+============================================
+
+-- Insert 5 users
+INSERT INTO users (name, email) VALUES
+('Rajesh Kumar', 'rajesh@example.com'),
+('Priya Sharma', 'priya@example.com'),
+('Amit Patel', 'amit@example.com'),
+('Sneha Singh', 'sneha@example.com'),
+('Vikram Reddy', 'vikram@example.com');
+
+Output:
+-------
+5 users inserted
+
+
+-- Insert 10 orders (ensuring one user has multiple orders)
+INSERT INTO orders (user_id, amount, status) VALUES
+(1, 2500, 'completed'),
+(1, 1800, 'pending'),
+(1, 3200, 'completed'),
+(2, 1500, 'completed'),
+(2, 2200, 'shipped'),
+(3, 4500, 'pending'),
+(4, 1200, 'completed'),
+(4, 3800, 'completed'),
+(4, 900, 'cancelled'),
+(5, 5500, 'shipped');
+
+Output:
+-------
+10 orders inserted
+
+
+============================================
+STEP 3: READ DATA (RELATIONAL READS)
+============================================
+
+Query 3.1: Fetch all users
+---------
+SELECT * FROM users;
+
+Output:
+-------
+id | name         | email               | created_at
+---+--------------+---------------------+---------------------------
+1  | Rajesh Kumar | rajesh@example.com  | 2026-01-24 07:18:32.929058
+2  | Priya Sharma | priya@example.com   | 2026-01-24 07:18:32.929058
+3  | Amit Patel   | amit@example.com    | 2026-01-24 07:18:32.929058
+4  | Sneha Singh  | sneha@example.com   | 2026-01-24 07:18:32.929058
+5  | Vikram Reddy | vikram@example.com  | 2026-01-24 07:18:32.929058
+
+5 rows (Limited to only 100 rows)
+
+
+Query 3.2: Fetch all orders
+---------
+SELECT * FROM orders;
+
+Output:
+-------
+id | user_id | amount | status    | created_at
+---+---------+--------+-----------+---------------------------
+1  | 1       | 2500   | completed | 2026-01-24 07:18:56.379217
+2  | 1       | 1800   | pending   | 2026-01-24 07:18:56.379217
+3  | 1       | 3200   | completed | 2026-01-24 07:18:56.379217
+4  | 2       | 1500   | completed | 2026-01-24 07:18:56.379217
+5  | 2       | 2200   | shipped   | 2026-01-24 07:18:56.379217
+6  | 3       | 4500   | pending   | 2026-01-24 07:18:56.379217
+7  | 4       | 1200   | completed | 2026-01-24 07:18:56.379217
+8  | 4       | 3800   | completed | 2026-01-24 07:18:56.379217
+9  | 4       | 900    | cancelled | 2026-01-24 07:18:56.379217
+10 | 5       | 5500   | shipped   | 2026-01-24 07:18:56.379217
+
+10 rows (Limited to only 100 rows)
+
+
+Query 3.3: Fetch all orders for a specific user
+---------
+SELECT 
+  orders.id, 
+  orders.amount, 
+  orders.status, 
+  orders.created_at,
+  users.name AS user_name
+FROM orders
+JOIN users ON orders.user_id = users.id
+WHERE users.id = 1;
+
+Output:
+-------
+id | amount | status     | created_at               | user_name
+---+--------+------------+--------------------------+-------------
+1  | 2500   | completed  | 2026-01-24 07:18:56.379217 | Rajesh Kumar
+2  | 1800   | pending    | 2026-01-24 07:18:56.379217 | Rajesh Kumar
+3  | 3200   | completed  | 2026-01-24 07:18:56.379217 | Rajesh Kumar
+
+
+Query 3.4: Fetch users who have more than one order
+---------
+SELECT 
+  users.id,
+  users.name,
+  users.email,
+  COUNT(orders.id) AS order_count
+FROM users
+JOIN orders ON users.id = orders.user_id
+GROUP BY users.id, users.name, users.email
+HAVING COUNT(orders.id) > 1;
+
+Output:
+-------
+id | name         | email                | order_count
+---+--------------+----------------------+-------------
+4  | Sneha Singh  | sneha@example.com    | 3
+2  | Priya Sharma | priya@example.com    | 2
+1  | Rajesh Kumar | rajesh@example.com   | 3
+
+
+Query 3.5: Fetch total order amount per user
+---------
+SELECT 
+  users.id,
+  users.name,
+  users.email,
+  COUNT(orders.id) AS total_orders,
+  SUM(orders.amount) AS total_amount
+FROM users
+LEFT JOIN orders ON users.id = orders.user_id
+GROUP BY users.id, users.name, users.email
+ORDER BY total_amount DESC;
+
+Output:
+-------
+id | name         | email               | total_orders | total_amount
+---+--------------+---------------------+--------------+-------------
+1  | Rajesh Kumar | rajesh@example.com  | 3            | 7500
+4  | Sneha Singh  | sneha@example.com   | 3            | 5900
+5  | Vikram Reddy | vikram@example.com  | 1            | 5500
+3  | Amit Patel   | amit@example.com    | 1            | 4500
+2  | Priya Sharma | priya@example.com   | 2            | 3700
+
+============================================
+STEP 4: UPDATE DATA
+============================================
+
+Query 4.1: Update the email of one user
+---------
+UPDATE users
+SET email = 'rajesh.new@example.com'
+WHERE id = 1;
+
+-- Verify the update
+SELECT * FROM users WHERE id = 1;
+
+Output:
+-------
+
+id | name         | email                   | created_at
+---+--------------+-------------------------+---------------------------
+1  | Rajesh Kumar | rajesh.new@example.com  | 2026-01-24 07:18:32.929058
+
+
+Query 4.2: Update the status of all orders for a specific user
+---------
+UPDATE orders
+SET status = 'delivered'
+WHERE user_id = 2 AND status = 'completed';
+
+-- Verify the update
+SELECT * FROM orders WHERE user_id = 2;
+
+Output:
+-------
+id | user_id | amount | status    | created_at
+---+---------+--------+-----------+---------------------------
+5  | 2       | 2200   | shipped   | 2026-01-24 07:18:56.379217
+4  | 2       | 1500   | delivered | 2026-01-24 07:18:56.379217
+
+
+
+Query 4.3: Update order amount for a single order
+---------
+UPDATE orders
+SET amount = 2800
+WHERE id = 1;
+
+-- Verify the update
+SELECT * FROM orders WHERE id = 1;
+
+Output:
+-------
+id | user_id | amount | status     | created_at
+---+---------+--------+------------+---------------------------
+1  | 1       | 2800   | completed  | 2026-01-24 07:18:56.379217
+
+
+============================================
+STEP 5: DELETE DATA
+============================================
+
+Query 5.1: Delete one order using order id
+---------
+DELETE FROM orders WHERE id = 10;
+
+-- Verify the deletion
+SELECT * FROM orders WHERE id = 10;
+
+Output:
+-------
+0 row (Limited to only 100 rows)
+
+Query 5.2: Delete all orders of a specific user
+---------
+DELETE FROM orders WHERE user_id = 3;
+
+-- Verify the deletion
+SELECT * FROM orders WHERE user_id = 3;
+
+Output:
+-------
+Success. No rows returned (0 rows returned)
+
+
+Query 5.3: Attempt deleting a user with existing orders
+---------
+DELETE FROM users WHERE id = 1;
+
+Output:
+-------
+Error: Failed to run sql query: ERROR: 23503: 
+update or delete on table "users" violates foreign key constraint 
+"orders_user_id_fkey" on table "orders" DETAIL: Key (id)=(1) 
+is still referenced from table "orders".
+
+Observation:
+The database prevents deletion of a user who has existing orders because of the 
+FOREIGN KEY constraint. This maintains referential integrity - orders cannot 
+exist without a valid user reference.
+
+
+============================================
+STEP 6: CONCEPTUAL QUESTION
+============================================
+
+-- Why should orders not be stored inside the users table?
+/*
+Answer:
+
+1. DATA REDUNDANCY: If we store orders inside the users table, we would need to 
+   duplicate user information (name, email) for each order. This wastes storage 
+   and creates inconsistency risks.
+
+2. NORMALIZATION: Database normalization principles (specifically 1NF) dictate 
+   that each table cell should contain a single atomic value. Storing multiple 
+   orders within a user row violates this principle.
+
+3. SCALABILITY: A user can have unlimited orders over time. Storing them in the 
+   same table makes it difficult to:
+   - Query orders independently
+   - Add order-specific fields
+   - Handle large datasets efficiently
+
+4. QUERY PERFORMANCE: Separate tables allow:
+   - Indexing specific to orders (e.g., by status, date)
+   - Efficient filtering and joining
+   - Better query optimization by the database engine
+
+5. FLEXIBILITY: Order-specific operations (filtering by status, calculating 
+   totals, analyzing trends) become complex if orders are embedded within users.
+
+6. RELATIONSHIP CLARITY: Foreign keys make the one-to-many relationship explicit 
+   and enforceable, ensuring data integrity.
+
+CORRECT APPROACH: Use separate tables with a foreign key relationship:
+- users table: stores user information once
+- orders table: stores orders with user_id foreign key
+- This follows the principle "separate entities, related through keys"
+*/
+
+
